@@ -1,8 +1,5 @@
 -- No superwow, no superapi
-if not SUPERWOW_VERSION then
-	DEFAULT_CHAT_FRAME:AddMessage("No SuperWoW detected");
-	-- this version of SuperAPI is made for SuperWoW 1.2
-	-- can somebody make this warning better?
+if not SetAutoloot then
 	return
 end
 
@@ -86,13 +83,13 @@ end
 -- Global function to get a spell link from its exact id
 SuperAPI.GetSpellLink = function(id)
 	local spellname = SpellInfo(id)
-	local link = "\124cffffffff\124Henchant:" .. id .. "\124h[" .. spellname .. "]\124h\124r"
+	local link = "\124cffffffff\124Hspell:" .. id .. "\124h[" .. spellname .. "]\124h\124r"
 	return link
 end
 
 -- reformat "Enchant" itemlinks to better supported "Spell" itemlinks
 SuperAPI.SetItemRef = function(link, text, button)
-	link = gsub(link, "spell:", "enchant:")
+	link = gsub(link, "enchant:", "spell:")
 	SuperAPI.SetItemRefOriginal(link, text, button)
 end
 
